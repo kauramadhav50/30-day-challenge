@@ -1,7 +1,11 @@
 import "./App.css";
 import { TaskCard } from "./Components/TaskCard.tsx";
+import { Button } from "./Components/Button.tsx";
+import { TaskForm } from "./Pages/taskform.tsx";
+import { useState } from "react";
 
 function App() {
+  const [isopen, setIsopen] = useState(false);
   return (
     <>
       <div className="h-screen bg-gray-900">
@@ -9,6 +13,16 @@ function App() {
           <TaskCard name="Total Tasks" Taskno="10" />
           <TaskCard name="Completed Tasks" Taskno="5" />
           <TaskCard name="Pending Tasks" Taskno="5" />
+        </div>
+
+        <div className="p-4">
+          {/* Add task form button */}
+          <Button name="Add Task" onclick={() => setIsopen(true)} />
+
+          {/* Add task form */}
+          {isopen && (
+            <TaskForm onclick={() => setIsopen(false)} />
+          )}
         </div>
       </div>
     </>
