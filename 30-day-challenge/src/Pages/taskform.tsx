@@ -1,6 +1,26 @@
-import {Button} from "../Components/Button.tsx"
+import { Button } from "../Components/Button.tsx";
+import { useState } from "react";
 
 export function TaskForm({ onclick }) {
+  const [formData, setFormData] = useState({
+    task: "",
+    priority: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    onclick();
+
+    
+  };
+
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
       <div className="relative w-full max-w-2xl mx-4 p-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl">
@@ -16,20 +36,41 @@ export function TaskForm({ onclick }) {
           <h1 className="text-3xl font-semibold text-white mb-6">Add Task</h1>
         </div>
 
-        <form className="grid grid-cols-1 md:grid-cols-1 gap-4">
+        <form
+          className="grid grid-cols-1 md:grid-cols-1 gap-4"
+          onSubmit={handleSubmit}
+          method="post"
+        >
           <input
             type="text"
             placeholder="Task name"
+            name="task"
+            value={formData.task}
+            onChange={handleChange}
             className="bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-lg p-3 outline-none focus:bg-white/20 focus:border-white/40 transition"
+            required
           />
-          <select className="bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-lg p-3 outline-none focus:bg-white/20 focus:border-white/40 transition" defaultValue="">
-
-            <option disabled value="" className="text-gray-500 bg-white/10">Select Priority</option>
-            <option value="low" className="text-red-500 bg-white/10">Low</option>
-            <option value="medium" className="text-yellow-500 bg-white/10">Medium</option>
-            <option value="high" className="text-green-500 bg-white/10">High</option>
+          <select
+            name="priority"
+            value={formData.priority}
+            onChange={handleChange}
+            className="bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-lg p-3 outline-none focus:bg-white/20 focus:border-white/40 transition"
+            defaultValue=""
+          >
+            <option disabled value="" className="text-gray-500 ">
+              Select Priority
+            </option>
+            <option value="low" className="text-red-500 ">
+              Low
+            </option>
+            <option value="medium" className="text-yellow-500 ">
+              Medium
+            </option>
+            <option value="high" className="text-green-500 ">
+              High
+            </option>
           </select>
-          <Button name="Add Task" onclick={() => {}} />
+          <Button name="Add Task" type="submit" onclick={() => {}}  />
         </form>
       </div>
     </div>

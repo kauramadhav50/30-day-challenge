@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function App() {
   const [isopen, setIsopen] = useState(false);
+
   return (
     <>
       <div className="h-screen bg-gray-900">
@@ -20,9 +21,7 @@ function App() {
           <Button name="Add Task" onclick={() => setIsopen(true)} />
 
           {/* Add task form */}
-          {isopen && (
-            <TaskForm onclick={() => setIsopen(false)} />
-          )}
+          {isopen && <TaskForm onclick={() => setIsopen(false)} />}
         </div>
       </div>
     </>
