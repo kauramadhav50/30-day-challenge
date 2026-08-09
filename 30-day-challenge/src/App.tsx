@@ -3,6 +3,7 @@ import { TaskCard } from "./Components/TaskCard.tsx";
 import { Button } from "./Components/Button.tsx";
 import { TaskForm } from "./Pages/taskform.tsx";
 import { useState } from "react";
+import { TaskList } from "./Components/TaskList.tsx";
 
 function App() {
   const [isopen, setIsopen] = useState(false);
@@ -23,6 +24,7 @@ function App() {
           {/* Add task form */}
           {isopen && <TaskForm onclick={() => setIsopen(false)} />}
         </div>
+        <TaskList />
       </div>
     </>
   );
