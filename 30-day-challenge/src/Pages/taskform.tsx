@@ -1,7 +1,7 @@
 import { Button } from "../Components/Button.tsx";
 import { useState } from "react";
 
-export function TaskForm({ onclick }) {
+export function TaskForm({ onclick, onAddTask }) {
   const [formData, setFormData] = useState({
     task: "",
     priority: "",
@@ -10,6 +10,7 @@ export function TaskForm({ onclick }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    
   };
 
   const handleSubmit = (e) => {
@@ -18,7 +19,7 @@ export function TaskForm({ onclick }) {
 
     onclick();
 
-    
+    onAddTask(formData);
   };
 
   return (
@@ -55,7 +56,6 @@ export function TaskForm({ onclick }) {
             value={formData.priority}
             onChange={handleChange}
             className="bg-white/10 border border-white/20 text-white placeholder-white/50 rounded-lg p-3 outline-none focus:bg-white/20 focus:border-white/40 transition"
-            defaultValue=""
           >
             <option disabled value="" className="text-gray-500 ">
               Select Priority
