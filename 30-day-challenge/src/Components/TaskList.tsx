@@ -1,6 +1,9 @@
 import { Button } from "./Button.tsx";
 
-export function TaskList({ task }) {
+export function TaskList({ task, onTaskComplete }) {
+
+  
+  
   return (
     <div className="w-full mt-6">
 
@@ -68,7 +71,7 @@ export function TaskList({ task }) {
             <div className="flex flex-wrap justify-start md:justify-center gap-2">
               <Button
                 name="Complete"
-                onclick={() => {}}
+                onclick={onTaskComplete}
               />
 
               <Button

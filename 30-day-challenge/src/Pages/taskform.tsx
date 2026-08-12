@@ -2,9 +2,11 @@ import { Button } from "../Components/Button.tsx";
 import { useState } from "react";
 
 export function TaskForm({ onclick, onAddTask }) {
+  
   const [formData, setFormData] = useState({
     task: "",
     priority: "",
+    completed: false,
   });
 
   const handleChange = (e) => {
@@ -15,7 +17,6 @@ export function TaskForm({ onclick, onAddTask }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
 
     onclick();
 
@@ -70,7 +71,7 @@ export function TaskForm({ onclick, onAddTask }) {
               High
             </option>
           </select>
-          <Button name="Add Task" type="submit" onclick={() => {}}  />
+          <Button name="Add Task" onclick={() => {}}  />
         </form>
       </div>
     </div>
